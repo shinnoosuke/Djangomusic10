@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .migrations import views
-
+#from .migrations import views
+from . import views
 
 urlpatterns = [
 
