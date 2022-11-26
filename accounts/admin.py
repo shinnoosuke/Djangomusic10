@@ -44,4 +44,9 @@ class MyUserAdmin(UserAdmin):
   
   
 admin.site.register(User, MyUserAdmin)
+from django import admin
+from .models import instrument
+
+admin.site.register(instrument)
+
 
