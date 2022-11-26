@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import User
 
 
+
   
   
 class MyUserChangeForm(UserChangeForm):
@@ -43,3 +44,4 @@ class MyUserAdmin(UserAdmin):
   
   
 admin.site.register(User, MyUserAdmin)
+
