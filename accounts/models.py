@@ -52,6 +52,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     introduction = models.TextField(_('introduction'), blank=True)
     image = models.ImageField(_('image'), blank=True, null=True)
     fee = models.CharField(_('fee'), max_length=3, blank=True)
+    is_musician = models.BooleanField(verbose_name="音楽家である",default=False)
+
   
     is_staff = models.BooleanField(
         _('staff status'),
