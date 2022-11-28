@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import instrument, language, teaching_inst, tl, fee, academic, experience, certificate, reputation, message, oneword
+from .models import instrument, teaching_inst, teaching_langage, fee, academic, experience, certificate, reputation, message, oneword, language
 
 admin.site.register(instrument)
 admin.site.register(language)
 admin.site.register(teaching_inst)
-admin.site.register(tl)
+admin.site.register(teaching_langage)
 admin.site.register(fee)
 admin.site.register(academic)
 admin.site.register(experience)
