@@ -24,31 +24,14 @@ class teaching_inst(models.Model):
 class teaching_langage(models.Model):    
     teaching_lang = models.ForeignKey(language, on_delete=models.CASCADE) 
 
-
- #class movie(models.Model):
-  #  prof_movie = models.movieField(movie, on_delete=models.CASCADE) 
-  # 
-class fee(models.Model):
+class User(models.Model):
+    movie = models.URLField(max_length=200, null=True, blank=True)
     fee = models.IntegerField()
-
-class academic(models.Model):
     academic = models.TextField(max_length=500)
-
-class experience(models.Model):
     experience = models.TextField(max_length=500)
-
-class certificate(models.Model):
-    certificate = models.TextField(max_length=500)                  
-
-class reputation(models.Model):
-    reoutation = models.TextField(max_length=500)
-
-class message(models.Model):
+    certificate = models.TextField(max_length=500)
+    reputation = models.TextField(max_length=500)
     message = models.TextField(max_length=500)
-
-class oneword(models.Model):
     oneword = models.TextField(max_length=500)
 
-  
-
-# Create your models here.
+ 
