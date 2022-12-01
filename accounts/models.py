@@ -51,7 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     city = models.CharField(_('city'), max_length=20, blank=True)
     introduction = models.TextField(_('introduction'), blank=True)
     image = models.ImageField(_('image'), blank=True, null=True)
-    fee = models.CharField(_('fee'), max_length=3, blank=True)
+    #fee = models.CharField(_('fee'), max_length=3, blank=True)
     is_musician = models.BooleanField(verbose_name="音楽家である",default=False)
 
   
