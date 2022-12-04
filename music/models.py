@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from accounts.models import User
 from django.core.validators import MinValueValidator,MaxValueValidator
+from django.utils.translation import gettext as _
 
 class instrument(models.Model):
     inst_name = models.CharField(max_length=50)
@@ -28,23 +29,23 @@ class teaching_inst(models.Model):
 class teaching_langage(models.Model):    
     teaching_lang = models.ForeignKey(language, on_delete=models.CASCADE) 
 
-#class teacher_picture
-#    image = models.ImageField(_('image'), blank=True, null=True)    
+class teacher_picture(models.Model): 
+    image = models.ImageField(_('image'), blank=True, null=True)    
 
 class  Teacher(models.Model):
     movie = models.URLField(max_length=200, null=True, blank=True)
     #fee = models.IntegerField()
     #fee = models.IntegerField()
     #この場合、feeには0から3までの数値だけ入力が許される。
-    fee = models.IntegerField( validators=[MinValueValidator(0), MaxValueValidator(3)] , null=True, blank=True)
+    fee = models.IntegerField( validators=[MinValueValidator(0), MaxValueValidator(100)] , null=True, blank=True)
     academic = models.TextField(max_length=500)
     experience = models.TextField(max_length=500)
     certificate = models.TextField(max_length=500)
-    #reputation = models.TextField(max_length=500)
+    reputation = models.TextField(max_length=500, null=True, blank=True)
     message = models.TextField(max_length=500)
     oneword = models.TextField(max_length=500)
     lang = models.ForeignKey(teaching_langage, on_delete=models.CASCADE, null=True, blank=True)
     inst = models.ForeignKey(teaching_inst, on_delete=models.CASCADE, null=True, blank=True)
-    #pic = models.ForeignKey(teacher_picture, on_delete=models.CASCADE, null=True, blank=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='email')
+    pic = models.ForeignKey(teacher_picture, on_delete=models.CASCADE, null=True, blank=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='email',default="9999")
 
