@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from accounts.models import User
+from .models import Teacher
 
 
 class ListMusicView(ListView):
-    template_name = 'music/music_list.html'
-    model = User
-       
+    template_name = 'music_list.html'
+    model = Teacher
+    #model = music  
+    
+context_object_name = 'object_list'
+#context_object_name = 'object_list'
