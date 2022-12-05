@@ -1,15 +1,17 @@
 
 {% for item in object_list %}
-<ul>  
+<ul>
+  <li><img src="{{ item.pic.image.url }}" alt=""></li> 
   <li>{{ item.movie }}</li>
   <li>{{ item.fee }}</li>
   <li>{{ item.experience }}</li>
   <li> {{ item.certificate }}</li>
-  <li>{{ item.Reputation }}</li>
+  <li>{{ item.reputation }}</li>
   <li>{{ item.message }}</li>
   <li>{{ item.oneword }}</li>
-  <li>{{ item.lang }}</li>
-  <li>{{ item.inst }}</li>
-  <li>{{ item.email }}</li>
+  <li>{{ item.lang.teaching_lang.language_name }}</li>
+  <li>{{ item.inst.teaching_inst.inst_name }}</li>
+  <li>{{ item.user_id.email }}</li>
+  <li><img src="{{ item.pic.image.url }}" alt=""></li>
 </ul>  
 {% endfor %} 

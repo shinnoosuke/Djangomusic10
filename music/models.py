@@ -11,13 +11,14 @@ class instrument(models.Model):
     #TODO:AUTH_USER_MODELにカスタムユーザーモデルの在り処が書いてあるので、settingsから呼び出し、1対多を組む
     #user        = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="ユーザー", on_delete=models.CASCADE, null=True, blank=True)
 
-
-
     def __str__(self):
         return self.inst_name
 
 class language(models.Model):
     language_name =  models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.language_name
 
 class teaching_inst(models.Model):
     teaching_inst   = models.ForeignKey(instrument, related_name="teaching_inst" ,  on_delete=models.CASCADE, null=True, blank=True) 
