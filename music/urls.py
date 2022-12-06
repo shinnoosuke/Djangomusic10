@@ -14,9 +14,11 @@ from django.conf.urls.static import static
 urlpatterns = [
 
     path('music/', views.ListMusicView.as_view()),
+    path('music/<int:pk>/detail/', views.DetailMusicView.as_view()),
+    #path('music/detail/', views.DetailMusicView.as_view()),
     path('music/create/', views.CreateMusicView.as_view()),
-    path('music/<int:pk>/delete/', views.DeleteMusicView.as_view(), name='delete-book'),
-
+    path('music/<int:pk>/delete/', views.DeleteMusicView.as_view(), name='delete-music'),
+    path('music/<int:pk>/update/', views.UpdateMusicView.as_view(), name='update-music'),
     
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
