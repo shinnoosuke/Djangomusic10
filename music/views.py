@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DeleteView
 from .models import Teacher
 
 
@@ -8,11 +9,17 @@ class ListMusicView(ListView):
     model = Teacher
     #model = music  
 
-#class CreatMusicView(CreateView):
 class CreateMusicView(CreateView):    
     template_name = 'music/music_create.html'
     model = Teacher
-    fields = ('fee','academic','certificate')
+    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","inst","pic","user_id")
+
+    success_url = '/music/'
+
+class DeleteMusicView(DeleteView):
+    template_name = 'music/music_confirm.html'
+    model = Teacher
+    success_url = reverse_lazy('list-music') 
 
 #context_object_name = 'object_list'
 #context_object_name = 'object_list'

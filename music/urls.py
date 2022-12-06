@@ -15,6 +15,7 @@ urlpatterns = [
 
     path('music/', views.ListMusicView.as_view()),
     path('music/create/', views.CreateMusicView.as_view()),
+    path('music/<int:pk>/delete/', views.DeleteMusicView.as_view(), name='delete-book'),
 
     
 ]
