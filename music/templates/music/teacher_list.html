@@ -1,17 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <table border="1">  
 
+<tr>
+  <th>写真</th> 
+  <th>動画</th>
+  <th>料金</th>
+  <th>経歴</th>
+  <th>資格</th>
+  <th>評価</th>
+  <th>メッセージ</th>
+  <th>ひと言</th>
+  <th>指導言語</th>
+  <th>指導楽器</th>
+  <th>email</th>
+</td>
 {% for item in object_list %}
-<ul>
-  <li><img src="{{ item.pic.image.url }}" alt=""></li> 
-  <li>{{ item.movie }}</li>
-  <li>{{ item.fee }}</li>
-  <li>{{ item.experience }}</li>
-  <li> {{ item.certificate }}</li>
-  <li>{{ item.reputation }}</li>
-  <li>{{ item.message }}</li>
-  <li>{{ item.oneword }}</li>
-  <li>{{ item.lang.teaching_lang.language_name }}</li>
-  <li>{{ item.inst.teaching_inst.inst_name }}</li>
-  <li>{{ item.user_id.email }}</li>
-  <li><img src="{{ item.pic.image.url }}" alt=""></li>
-</ul>  
-{% endfor %} 
+<tr>
+  <td><img src="{{ item.pic.image.url }}" alt=""></td> 
+  <td>
+    <iframe width="560" height="315" src="{{ item.movie }}" title="youtube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </td>
+  <td>{{ item.fee }}</td>
+  <td>{{ item.experience }}</td>
+  <td> {{ item.certificate }}</td>
+  <td>{{ item.reputation }}</li>
+  <td>{{ item.message }}</td>
+  <td>{{ item.oneword }}</td>
+  <td>{{ item.lang.teaching_lang.language_name }}</td>
+  <td>{{ item.inst.teaching_inst.inst_name }}</td>
+  <td>{{ item.user_id.email }}</td>
+  </tr>
+  {% endfor %} 
+ </table>  
+</body>
