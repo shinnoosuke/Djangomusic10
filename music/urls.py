@@ -19,6 +19,7 @@ urlpatterns = [
     path('music/create/', views.CreateMusicView.as_view()),
     path('music/<int:pk>/delete/', views.DeleteMusicView.as_view(), name='delete-music'),
     path('music/<int:pk>/update/', views.UpdateMusicView.as_view(), name='update-music'),
-    
+    #path('music/<int:music_id>/review/', views.CreateReviewView.as_View(),name='review'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

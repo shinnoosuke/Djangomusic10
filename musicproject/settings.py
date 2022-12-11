@@ -130,3 +130,5 @@ AUTH_USER_MODEL = 'accounts.User'
 
 MEDIA_URL   = "/media/"
 MEDIA_ROOT  = BASE_DIR / "media"
+
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/music/create/'

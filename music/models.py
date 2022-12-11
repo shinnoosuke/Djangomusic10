@@ -3,6 +3,9 @@ from django.conf import settings
 from accounts.models import User
 from django.core.validators import MinValueValidator,MaxValueValidator
 from django.utils.translation import gettext as _
+#from .consts import MAX_RATE
+
+#RATE_CHOICES = [(x, str(x))for x in range(0, MAX_RATE +1)]
 
 class instrument(models.Model):
     inst_name = models.CharField(max_length=50)
@@ -50,3 +53,13 @@ class  Teacher(models.Model):
     pic = models.ForeignKey(teacher_picture, on_delete=models.CASCADE, null=True, blank=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='email',default="9999")
 
+                    
+#class Review (models .Model):
+    #teacher = models.CharField('名前', max_length=39)
+    #title = models.CharField(max_length=100)
+    #text = models.TextField()
+    #rate = models.IntegerField(choices=RATE_CHOICES)
+    #user = models.ForeignKey(auth.User , on_delete=models.CASCADE)
+
+    #ef __str__(self):
+     #   return self.title

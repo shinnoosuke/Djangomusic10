@@ -29,7 +29,12 @@ class UpdateMusicView(UpdateView):
     model = Teacher
     fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","inst","pic","user_id")
     template_name = 'music/music_update.html'
-    success_url = '/music/'  
+    success_url = '/music/' 
+
+#class CreateReviewView(CreateView):
+#    model = Review
+#    fields = ('teacher', 'title' , 'text' , 'rate')
+#    template_name = 'teacher/review_form.html'     
 
 #context_object_name = 'object_list'
 #context_object_name = 'object_list'
