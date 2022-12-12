@@ -53,7 +53,10 @@ class  Teacher(models.Model):
     pic = models.ForeignKey(teacher_picture, on_delete=models.CASCADE, null=True, blank=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='email',default="9999")
 
-                    
+    def __str__(self):
+        return str(self.user_id)
+
+                
 #class Review (models .Model):
     #teacher = models.CharField('名前', max_length=39)
     #title = models.CharField(max_length=100)
