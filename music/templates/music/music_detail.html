@@ -2,8 +2,8 @@
 <div class="card">
     <h5 class="card-header">{{ object.title }}
     <div class="card-text"
-     <p class="card-text">{{ object.text }}</p> 
-     
+    <p class="card-text">{{ object.text }}</p> 
+     <a href="{% url 'teacher-music' object.pk %}" class="btn btn-primary">一覧へ</a>
      <a href="{% url 'update-music' object.pk %}" class="btn btn-primary">編集する</a>
      <a href="{% url 'delete-music' object.pk %}" class="btn btn-primary">削除する</a>
      <h6 class="card-title">{{ object.category }}</h6>

@@ -52,6 +52,7 @@ class  Teacher(models.Model):
     inst = models.ForeignKey(teaching_inst, on_delete=models.CASCADE, null=True, blank=True)
     pic = models.ForeignKey(teacher_picture, on_delete=models.CASCADE, null=True, blank=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='email',default="9999")
+    #contributer = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.user_id)
