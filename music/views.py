@@ -30,6 +30,11 @@ def index_view(request):
     object_list = Teacher.objects.all()
     return render(request, 'music/index.html',{'object_list': object_list})
 
+
+def index_view(request):
+    object_list = Teacher.objects.all()
+    return render(request, 'music/index.html',{'object_list': object_list})
+
 class UpdateMusicView(UpdateView): 
     model = Teacher
     fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","inst","pic","user_id")
