@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView,UpdateView,DetailView
 from .models import Teacher
@@ -37,12 +37,18 @@ class UpdateMusicView(UpdateView):
 
 class MypageView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, "music/mypage.html")
+
+        print(request.user.id)
+
+        context = {}
+        context["teacher"] = Teacher.objects.filter(user_id=request.user.id).first()
+
+        return render(request, "music/mypage.html",context)
 
     def post(self, request, *args, **kwargs):
+
         return redirect("mypage") 
 
-        #print(request.user.id)
 
 
 
