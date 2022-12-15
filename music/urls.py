@@ -1,4 +1,4 @@
-#from django.urls import path
+from django.urls import path
 
 #from .migrations import views
 from .import views
@@ -12,9 +12,9 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    #path('', views.index_view, name='index'),
+    path('', views.index_view, name='index'),
     path('music/', views.ListMusicView.as_view()),
-    path('music/<int:pk>/detail/', views.DetailMusicView.as_view()),
+    path('music/<int:pk>/detail/', views.DetailMusicView.as_view(),name='detail-music'),
     #path('music/detail/', views.DetailMusicView.as_view()),
     path('music/create/', views.CreateMusicView.as_view()),
     path('music/<int:pk>/delete/', views.DeleteMusicView.as_view(), name='delete-music'),

@@ -1,1 +1,13 @@
-{{ somedata }}
+{% block title %}先生一覧{% endblock %}
+{% block h1 %}先生一覧{% endblock %}
+
+{% block content %}
+  {% for item in object_list %}
+  <div class="p-4 m-4 bg-light border border-success rounded">
+      <h2 class="text-success">{{ item.title }}</h2>
+      <h6>資格 :{{ item.certificate}}</h6>
+      </div class="{% url 'detail-music' item.pk %}">詳細へ</a>
+    </div>
+  {% endfor %}
+{% endblock content %}
+

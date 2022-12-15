@@ -26,8 +26,9 @@ class DeleteMusicView(DeleteView):
     model = Teacher
     success_url = '/music/'
 
-#def index_view(request):
-#    return render(request, 'music/index.html,{'somedata': 100})
+def index_view(request):
+    object_list = Teacher.objects.all()
+    return render(request, 'music/index.html',{'object_list': object_list})
 
 class UpdateMusicView(UpdateView): 
     model = Teacher
