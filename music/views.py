@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+#from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView,UpdateView,DetailView
 from .models import Teacher
