@@ -18,9 +18,17 @@ class DetailMusicView(DetailView):
 class CreateMusicView(CreateView):    
     template_name = 'music/music_create.html'
     model = Teacher
-    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","inst","pic","user_id")
+    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","pic","user_id")
 
     success_url = '/music/'
+
+#class CreatePeopleView(CreateView):    
+#    template_name = 'music/music_people_create.html'
+#    model = User
+#    fields = ("first_name","last_name","","city","introduction")
+
+#    success_url = '/music/'
+
 
 class DeleteMusicView(DeleteView):
     template_name = 'music/music_confirm_delete.html'

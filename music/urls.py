@@ -24,6 +24,9 @@ urlpatterns = [
     path('music/<int:pk>/list/', views.ListView.as_view(), name="teacher-music"),
     path('music/mypage/', views.MypageView.as_view(), name="mypage"),
     #path('music/list/. views.'ListMusicView.as_view()),
+    #path('music/create/', views.CreatePeopleView.as_view()),
+    
+
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
