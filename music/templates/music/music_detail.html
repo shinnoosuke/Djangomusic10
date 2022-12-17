@@ -25,10 +25,10 @@
         <li>資格: {{ teacher.certificate }}</li>
         <li>生徒からの評価: {{ request.reputation }}</li>
         <li>一言: {{ teacher.oneword }}</li>
-        <li>楽器: {{ teaching_inst.inst_name }}</li>
+        <li>楽器: {{ teacher.teaching_inst.inst_name }}</li>
         <li>楽器経験年数: {{ teacher.year }}</li>
         <li>楽器レベル: {{ teacher.revel }}</li>
-        <li>言語: {{ teacher.lang.teaching_lang.year. }}</li>
+        <li>言語: {{ teacher.lang.language_name }}</li>
     </ul>
     <form action="" method="POST"
         {% csrf_token %}
