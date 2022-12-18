@@ -9,5 +9,11 @@ class SignupView(CreateView):
     model = User
     form_class = SignupForm
     template_name = 'accounts/signup.html'
+
+class CreatePeopleView(CreateView):    
     success_url = reverse_lazy('index')
+    template_name='people/User_account.html'
+    model= User
+    fields = ("first_name","last_name","email","introduction")
+
 

@@ -28,7 +28,10 @@
         <li>楽器: {{ teacher.teaching_inst.inst_name }}</li>
         <li>楽器経験年数: {{ teacher.year }}</li>
         <li>楽器レベル: {{ teacher.revel }}</li>
-        <li>言語: {{ teacher.lang.language_name }}</li>
+        {% for lang in teacher.lang.all %}
+          <li>言語: {{ lang.language_name }}</li>
+          {% endfor %}
+        <!--<li>言語: {{ teacher.lang.language_name }}</li>-->
     </ul>
     <form action="" method="POST"
         {% csrf_token %}
