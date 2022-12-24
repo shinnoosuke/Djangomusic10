@@ -17,6 +17,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 from .views import SignupView, CreatePeopleView
 
+from . import views
+
+
 app_name = 'accounts'
 
 urlpatterns = [
@@ -24,4 +27,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', SignupView.as_view(), name='signup'),
     path('create/', CreatePeopleView.as_view()),
+    path('accounts/<int:accounts>/review/', views.CreateReviewView.as_view(), name='review'),
 ]

@@ -11,12 +11,12 @@
     <h1>ユーザー情報</h1>
 
     <ul>
-        <li>ID: {{ request.user.id  }}</li>
-        <li>Email:  {{ request.user.email }}</li>
-        <li>名前 : {{ request.user.first_name }}</li>
-        <li>名字: {{ request.user.last_name }}</li>
+        <li>ID: {{ object.user_id.id  }}</li>
+        <li>Email:  {{ object.user_id.email }}</li>
+        <li>名前 : {{ object.user_id.first_name }}</li>
+        <li>名字: {{ object.user_id.last_name }}</li>
         <li><iframe width="560" height="315" src="{{ teacher.movie }}" title="youtube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></li>
-        <li>画像: {{ request.image }}</li> 
+        <!--<li>画像: {{ request.image }}</li> -->
         <li>画像： <img src="{{ teacher.pic.image.url }}" alt=""></li>
         <li>メッセージ: {{ teacher.message }}</li>
         <li>都市: {{ request.user.city }}</li>

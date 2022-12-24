@@ -6,6 +6,11 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
+
+from .consts import MAX_RATE
+
+
+RATE_CHOICES = [(x, str(x)) for x in range(0, MAX_RATE + 1)]
   
   
 class UserManager(BaseUserManager):
@@ -93,3 +98,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+class Review(models.Model):
+    first_name = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    text = models.TextField()
+    rate = models.IntegerField(choices=RATE_CHOICES)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
