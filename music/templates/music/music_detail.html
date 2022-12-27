@@ -15,6 +15,9 @@
         <li>Email:  {{ object.user_id.email }}</li>
         <li>名前 : {{ object.user_id.first_name }}</li>
         <li>名字: {{ object.user_id.last_name }}</li>
+        <li>都市: {{ object.user_id.city }}</li>
+        <li>ひとこと: {{ object.user_id.introduction }}</li>
+        <li>画像： <img src="{{ object.user.pic.image.url }}" alt=""></li>
         <li><iframe width="560" height="315" src="{{ teacher.movie }}" title="youtube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></li>
         <!--<li>画像: {{ request.image }}</li> -->
         <li>画像： <img src="{{ teacher.pic.image.url }}" alt=""></li>
