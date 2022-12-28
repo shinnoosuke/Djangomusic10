@@ -8,7 +8,7 @@
       <h6>指導楽器:{{ item.teaching_inst.inst_name }},ひとこと :{{ object.user_id.introduction}}資格 :{{ item.certificate}},経験:{{ item.experience }}</h6>
       <td><img src="{{ item.pic.image.url }}" alt=""></td>
       <div class="mt-3">
-        <a href="{% url 'detail-music' item.pk %}">詳細へ</a>
+        <a href="{% url 'music:detail-music' item.pk %}">詳細へ</a>
       </div>  
     </div>
   {% endfor %}

@@ -44,8 +44,8 @@ class SignupView(CreateView):
         print(self.request.POST.get("is_musician",False))
         print(self.request)
         if self.request.POST.get("is_musician",False):
-            #return reverse_lazy("music:musci-create")
-            return reverse_lazy("/accounts/signup")
+            return reverse_lazy("music:musci-create")
+            #return reverse_lazy("accounts:user_create")
         else:
             print("---------")
             return reverse_lazy("music:index")
