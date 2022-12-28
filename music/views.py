@@ -18,7 +18,7 @@ class DetailMusicView(DetailView):
 class CreateMusicView(CreateView):    
     template_name = 'music/music_create.html'
     model = Teacher
-    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","pic","user_id")
+    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic","user_id")
 
     success_url = '/music/'
 
@@ -40,13 +40,13 @@ def index_view(request):
     return render(request, 'music/index.html',{'object_list': object_list})
 
 
-def index_view(request):
-    object_list = Teacher.objects.all()
-    return render(request, 'music/index.html',{'object_list': object_list})
+#def index_view(request):
+#    object_list = Teacher.objects.all()
+#    return render(request, 'music/index.html',{'object_list': object_list})
 
 class UpdateMusicView(UpdateView): 
     model = Teacher
-    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","inst","pic","user_id")
+    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","inst","year","revel","pic","user_id")
     template_name = 'music/music_update.html'
     success_url = '/music/' 
 
