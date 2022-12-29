@@ -6,7 +6,7 @@
   <div class="p-4 m-4 bg-light border border-success rounded">
       <h2 class="text-success">{{ item.user_id.first_name }}{{ item.user_id.last_name }}</h2>
       <h6>指導楽器:{{ item.teaching_inst.inst_name }},ひとこと :{{ item.user_id.introduction}}</h6>
-      <td><img src="{{ item.pic.image.url }}" alt=""></td>
+  
       {% if item.user_id.image %}
         <img src="{{ item.user_id.image.url }}" />
       {% endif %}
