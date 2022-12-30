@@ -37,7 +37,7 @@ urlpatterns = [
     path('music/<int:pk>/delete/', views.DeleteMusicView.as_view(), name='delete-music'),
     path('music/<int:pk>/update/', views.UpdateMusicView.as_view(), name='update-music'),
     #path('music/<int:music_id>/review/', views.CreateReviewView.as_View(),name='review'),
-    #path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
     path('music/<int:pk>/list/', views.ListView.as_view(), name="teacher-music"),
     path('music/mypage/', views.MypageView.as_view(), name="mypage"),
 
