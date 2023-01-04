@@ -11,6 +11,7 @@ from django.conf.urls.static import static
 
 app_name = 'music'
 
+
 urlpatterns = [
     #path('', views.index_view, name='index'),
     #path('music/', views.ListMusicView.as_view()),

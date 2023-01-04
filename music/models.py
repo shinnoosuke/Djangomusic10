@@ -66,6 +66,22 @@ class  Teacher(models.Model):
     def __str__(self):
         return str(self.user_id)
 
+class DirectMessage(models.Model):
+    
+    sender = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='sender',
+        on_delete=models.CASCADE
+    )
+    receiver = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='receiver',
+        on_delete=models.CASCADE
+    )
+    message = models.CharField(verbose_name="メッセージ", max_length=200)
+    created_at = models.DateTimeField(verbose_name="登録日時", auto_now_add=True)
+
+    def __str__(self):
+        return str(self.sender) + ' --- send to ---> ' + str(self.receiver)        
+
                 
 #class Review (models .Model):
     #teacher = models.CharField('名前', max_length=39)

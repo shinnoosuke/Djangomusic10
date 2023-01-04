@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView,UpdateView,DetailView
 from .models import Teacher
 from django.views import View
-
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 class ListMusicView(ListView):
     template_name = 'music_list.html'
@@ -64,8 +64,27 @@ class MypageView(View):
 
         return redirect("mypage") 
 
+class DirectMessageViewSet(ModelViewSet):
+    queryset = DirectMessage.objects.all()
+    serializer_class = DirectMessageSerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(sender=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(sender=self.request.user)
+
+    def destroy(self, request, *args, **kwargs):
+        response = {'message': 'Delete DM is not allowed'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
+class InboxListView(ReadOnlyModelViewSet):
+    queryset = DirectMessage.objects.all()
+    serializer_class = DirectMessageSerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(receiver=self.request.user)
 
 
 
