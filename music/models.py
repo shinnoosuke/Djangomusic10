@@ -60,14 +60,11 @@ class  Teacher(models.Model):
     revel = models.IntegerField(null=True, blank=True)
 
 
-
-
-
     def __str__(self):
         return str(self.user_id)
 
 class DirectMessage(models.Model):
-    
+        
     sender = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='sender',
         on_delete=models.CASCADE
@@ -81,6 +78,7 @@ class DirectMessage(models.Model):
 
     def __str__(self):
         return str(self.sender) + ' --- send to ---> ' + str(self.receiver)        
+   
 
                 
 #class Review (models .Model):

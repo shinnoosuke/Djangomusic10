@@ -2,9 +2,11 @@ from django.shortcuts import render,redirect
 #from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView,UpdateView,DetailView
-from .models import Teacher
+from .models import Teacher,DirectMssage
 from django.views import View
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from .serializers import DirectMessageSerializer
+
+#from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 class ListMusicView(ListView):
     template_name = 'music_list.html'
@@ -18,9 +20,16 @@ class DetailMusicView(DetailView):
 class CreateMusicView(CreateView):    
     template_name = 'music/music_create.html'
     model = Teacher
+    
     fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic","user_id")
-
     success_url = '/music/'
+
+ #   def get_context_data(self, **kwargs):
+ #       context = super().get_context_data(**kwargs)
+ #       context['user_id'] = " Use.objects.get()pk =self .kwargs['int:pk']"
+ #       return context
+
+    
 
 #class CreatePeopleView(CreateView):    
 #    template_name = 'music/music_people_create.html'
