@@ -13,7 +13,7 @@ from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import SignupForm
-
+from django.contrib.auth import login
 
 #class SignupView(View):
 
@@ -35,6 +35,24 @@ from .forms import SignupForm
 #            return redirect()
 
 
+#class SignupView(CreateView):
+#    model = User
+#    form_class = SignupForm
+#    template_name = 'accounts/signup.html'
+#
+#    def get_success_url(self) -> str:
+#        print(self.request.POST.get("is_musician",False))
+#        print(self.request)
+#        if self.request.POST.get("is_musician",False):
+#            return reverse_lazy("music:musci-create")
+#            #return reverse_lazy("accounts:user_create")
+#        else:
+#            print("---------")
+#
+#            return reverse_lazy("music:index")
+#UserとTeacherの不具合のあるコード
+
+#↓不具合改修コード
 class SignupView(CreateView):
     model = User
     form_class = SignupForm
@@ -47,11 +65,13 @@ class SignupView(CreateView):
             return reverse_lazy("music:musci-create")
             #return reverse_lazy("accounts:user_create")
         else:
-            print("---------")
             return reverse_lazy("music:index")
-
-
-
+        
+    def form_valid(self, form):
+        result = super().form_valid(form)
+        user = self.object
+        login(self.request, user)
+        return result
 
 
 # class CreatePeopleView(CreateView):    

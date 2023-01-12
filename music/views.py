@@ -1,33 +1,71 @@
+from .serializers import DirectMessageSerializer
 from django.shortcuts import render,redirect
 #from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView,UpdateView,DetailView
-from .models import Teacher,DirectMssage
+from .models import Teacher,DirectMessage
 from django.views import View
 from .serializers import DirectMessageSerializer
 
-#from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 class ListMusicView(ListView):
     template_name = 'music_list.html'
     model = Teacher
     #model = music 
 
-class DetailMusicView(DetailView):
-    template_name = 'music/music_detail.html'
-    model = Teacher     
+
+#旧DetailMusicView
+# class DetailMusicView(DetailView):
+#   template_name = 'music/music_detail.html'
+#   model = Teacher
+
+class DetailMusicView(View):
+    def get(self, request, pk, *args, **kwargs)
+
+    Teacher.objects.filter(id=pk).pk
+
+    context["teacher"] = Teacher.objects.filter(id=pk).first()
+
+    return render (request,"music/music_detail.html" ,context)
+
+
+#生徒の個別ページを作りたい
+
+class DetailStudentView(View):
+    def get(self,request,pk,*args,**kwargs):
+        #ここでrequest.user.is_teacherがfalseの場合に限り表示させる。
+
+
+# #不具合のあるVeiw
+# #class CreateMusicView(CreateView):    
+#    template_name = 'music/music_create.html'
+#    model = Teacher
+    
+#    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic","user_id")
+#    success_url = '/music/'
+
+#    def get_context_data(self, **kwargs):
+#        context = super().get_context_data(**kwargs)
+#        context['user_id'] = " User.objects.get()pk =self .kwargs['int:pk']"
+#        return context
 
 class CreateMusicView(CreateView):    
     template_name = 'music/music_create.html'
     model = Teacher
+    #fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic","user_id")
+    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic",)
+
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.user_id = self.request.user
     
-    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic","user_id")
+        object.save()
+
+        return super().form_valid(form)
+
     success_url = '/music/'
 
- #   def get_context_data(self, **kwargs):
- #       context = super().get_context_data(**kwargs)
- #       context['user_id'] = " Use.objects.get()pk =self .kwargs['int:pk']"
- #       return context
 
     
 

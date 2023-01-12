@@ -134,8 +134,10 @@ MEDIA_ROOT  = BASE_DIR / "media"
 
 #LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/music/create/'
 
-LOGIN_REDIRECT_URL = "mypage"
+LOGIN_REDIRECT_URL = "http://127.0.0.1:8000/"
 
-LOGIN_REDIRECT_URL = "index"
+#LOGIN_REDIRECT_URL = "index"
 
 LOGOUT_REDIRECT_URL = "index"
+
+
