@@ -20,20 +20,21 @@ class ListMusicView(ListView):
 #   template_name = 'music/music_detail.html'
 #   model = Teacher
 
-class DetailMusicView(View):
-    def get(self, request, pk, *args, **kwargs)
+class DetailMusicViewSecond(View):
 
-    Teacher.objects.filter(id=pk).pk
+    def get(self, request, pk, *args, **kwargs):
 
-    context["teacher"] = Teacher.objects.filter(id=pk).first()
+        #Teacher.objects.filter(id=pk).first()
+        context = {}
+        context["object"]  =Teacher.objects.filter(id=pk).first()
 
-    return render (request,"music/music_detail.html" ,context)
+        return render (request,"music/music_detail.html" ,context)
 
 
 #生徒の個別ページを作りたい
 
-class DetailStudentView(View):
-    def get(self,request,pk,*args,**kwargs):
+#class DetailStudentView(View):
+#    def get(self,request,pk,*args,**kwargs):
         #ここでrequest.user.is_teacherがfalseの場合に限り表示させる。
 
 
