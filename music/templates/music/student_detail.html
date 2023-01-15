@@ -11,15 +11,13 @@
     <h1>ユーザー情報</h1>
 
     <ul>
-        <li>ID: {{ object.user_id.id  }}</li>
-        <li>Email:  {{ object.user_id.email }}</li>
-        <li>名前 : {{ object.user_id.first_name }}</li>
-        <li>名字: {{ object.user_id.last_name }}</li>
-        <li>都市: {{ object.user_id.city }}</li>
-        <li>ひとこと: {{ object.user_id.introduction }}</li>
-        {% if object.user.image.url %}
-        <li>画像： <img src="{{object.user.image.url}}" alt=""></li>
-
+        <li>ID: {{ user.id  }}</li>
+        <li>Email:  {{ user.email }}</li>
+        <li>名前 : {{ user.first_name }}</li>
+        <li>名字: {{ user.last_name }}</li>
+        <li>都市: {{ user.city }}</li>
+        <li>ひとこと: {{ user.introduction }}</li>
+        <li>画像： <img src="{{user.image.url}}" alt=""></li>
     </ul>
     <form action="" method="POST"
         {% csrf_token %}
