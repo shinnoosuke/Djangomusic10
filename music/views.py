@@ -6,7 +6,7 @@ from django.views.generic import ListView, CreateView, DeleteView,UpdateView,Det
 from .models import Teacher,DirectMessage
 from django.views import View
 from .serializers import DirectMessageSerializer
-
+from accounts.models import User
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 class ListMusicView(ListView):
@@ -28,7 +28,32 @@ class DetailMusicViewSecond(View):
         context = {}
         context["object"]  =Teacher.objects.filter(id=pk).first()
 
-        return render (request,"music/music_detail.html" ,context)
+        return render(request,"music/music_detail.html" ,context)
+
+class DetailStudentView(View):
+
+    # このpkはUserモデルのid
+    def get(self, request, pk, *args, **kwargs):
+
+        #ここでrequest.user.is_teacherがfalseの場合に限り表示させる。
+        #↑ request.userはリクエストを送信したユーザー自身の情報になる。pkが閲覧対象のユーザーのidなので、pkを使ってUserモデルからデータを取り出す。
+
+        user    = User.objects.filter(id=pk).first()
+
+        #存在しない場合リダイレクト
+        if not user:
+            return redirect("")
+
+
+        #講師である場合もリダイレクト
+        if user.is_musician:
+            return redirect("")
+
+        context = {"user":user}
+
+        #生徒である場合レンダリング
+        return render(request, "music/student_detail.html", context )
+
 
 
 #生徒の個別ページを作りたい
