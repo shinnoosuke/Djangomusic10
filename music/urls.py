@@ -32,7 +32,7 @@ urlpatterns = [
     
     path('', views.index_view, name='index'),
     path('music/', views.ListMusicView.as_view()),
-    path('music/<int:pk>/detail/', views.DetailMusicViewSecond.as_view(),name='detail-music'),
+    path('music/<int:pk>/detail/', views.DetailMusicView.as_view(),name='detail-music'),
     path('music/<int:pk>/student/', views.DetailStudentView.as_view(),name='detail-student'),
     #path('music/detail/', views.DetailMusicViewSecond.as_view()),
     path('music/create/', views.CreateMusicView.as_view(), name="musci-create"),

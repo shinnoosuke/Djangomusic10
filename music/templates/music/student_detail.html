@@ -17,7 +17,9 @@
         <li>名字: {{ user.last_name }}</li>
         <li>都市: {{ user.city }}</li>
         <li>ひとこと: {{ user.introduction }}</li>
+        {% if user.image %}
         <li>画像： <img src="{{user.image.url}}" alt=""></li>
+        {% endif %}
     </ul>
     <form action="" method="POST"
         {% csrf_token %}

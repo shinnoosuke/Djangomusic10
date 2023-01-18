@@ -20,13 +20,13 @@ class ListMusicView(ListView):
 #   template_name = 'music/music_detail.html'
 #   model = Teacher
 
-class DetailMusicViewSecond(View):
-
+class DetailMusicView(View):
+#ここにはis_musicianが使われてないから、全員出てきてしまうのでは？
     def get(self, request, pk, *args, **kwargs):
 
         #Teacher.objects.filter(id=pk).first()
         context = {}
-        context["object"]  =Teacher.objects.filter(id=pk).first()
+        context["teacher"]  =Teacher.objects.filter(id=pk).first()
 
         return render(request,"music/music_detail.html" ,context)
 
@@ -80,7 +80,7 @@ class CreateMusicView(CreateView):
     template_name = 'music/music_create.html'
     model = Teacher
     #fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic","user_id")
-    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel","pic",)
+    fields = ("fee","academic","experience","certificate","reputation","message","oneword","lang","teaching_inst","year","revel")
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -109,8 +109,15 @@ class DeleteMusicView(DeleteView):
     success_url = '/music/'
 
 def index_view(request):
+    
+    if request.user.is_musician:
+        #TODO:ここにDetailMusicViewSecondのnameを書く
+        return redirect("music:detail-music")
+
+
     object_list = Teacher.objects.all()
     return render(request, 'music/index.html',{'object_list': object_list})
+
 
 
 #def index_view(request):

@@ -11,20 +11,19 @@
     <h1>ユーザー情報</h1>
 
     <ul>
-        <li>ID: {{ object.user_id.id  }}</li>
-        <li>Email:  {{ object.user_id.email }}</li>
-        <li>名前 : {{ object.user_id.first_name }}</li>
-        <li>名字: {{ object.user_id.last_name }}</li>
-        <li>都市: {{ object.user_id.city }}</li>
-        <li>ひとこと: {{ object.user_id.introduction }}</li>
-        {% if object.user.image.url %}
-        <li>画像： <img src="{{object.user.image.url}}" alt=""></li>
+        <li>ID: {{ teacher.user_id.id  }}</li>
+        <li>Email:  {{ teacher.user_id.email }}</li>
+        <li>名前 : {{ teacher.user_id.first_name }}</li>
+        <li>名字: {{ teacher.user_id.last_name }}</li>
+        <li>都市: {{ teacher.user_id.city }}</li>
+        <li>ひとこと: {{ teachrt.user_id.introduction }}</li>
+        {% if teacher.user_id.image.url %}
+        <li>画像： <img src="{{teacher.user_id.image.url}}" alt=""></li>
         {% endif %}
-        <li><iframe width="560" height="315" src="{{ teacher.movie }}" title="youtube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></li>
-        <li>画像： <img src="{{ teacher.pic.image.url }}" alt=""></li>
+
         <li>料金目安($/h): {{ teacher.fee }}</li>
         <li>メッセージ: {{ teacher.message }}</li>
-        <li>都市: {{ request.user.city }}</li>
+
         <li>学歴: {{ teacher.academic }}</li>
         <li>経験: {{ teacher.experience }}</li>
         <li>資格: {{ teacher.certificate }}</li>
@@ -45,14 +44,3 @@
   </body>
   </html>
 
-{% block title %}先生詳細{% endblock %}
-<div class="card">
-    <h5 class="card-header">{{ object.title }}
-    <div class="card-text"
-     <p class="card-text">{{ object.text }}</p> 
-     <a href="{% url 'music:teacher-music' object.pk %}" class="btn btn-primary">一覧へ</a>
-     <a href="{% url 'music:update-music' object.pk %}" class="btn btn-primary">編集する</a>
-     <a href="{% url 'music:delete-music' object.pk %}" class="btn btn-primary">削除する</a>
-     <h6 class="card-title">{{ object.category }}</h6>
-   </div>
- </div>
