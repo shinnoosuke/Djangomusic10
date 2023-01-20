@@ -1,13 +1,17 @@
 from .serializers import DirectMessageSerializer
 from django.shortcuts import render,redirect
-#from django.contrib.auth import logout
+from django.contrib.auth import logout
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DeleteView,UpdateView,DetailView
+from django.views.generic import ListView, CreateView,UpdateView, DetailView
 from .models import Teacher,DirectMessage
 from django.views import View
 from .serializers import DirectMessageSerializer
 from accounts.models import User
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 class ListMusicView(ListView):
     template_name = 'music_list.html'
@@ -103,20 +107,46 @@ class CreateMusicView(CreateView):
 #    success_url = '/music/'
 
 
-class DeleteMusicView(DeleteView):
-    template_name = 'music/music_confirm_delete.html'
-    model = Teacher
-    success_url = '/music/'
+#class DeleteMusicView(View):
+    #template_name = 'music/music_confirm_delete.html'
+    #model = Teacher
+    #success_url = '/music/'
 
+class DeleteMusicView(View):
+    #template_name = 'music/music_confirm_delete.html'
+    #model = Teacher
+    #success_url = '/music/'
+
+    def get(self, request, pk, *args, **kwargs):
+        teacher = Teacher.objects.filter(id=pk).first()
+
+        if teacher.user_id == request.user:
+            User.delete()
+
+        # 任意のページへリダイレクト
+        return redirect("")    
+
+
+
+# ここがトップページ( http://127.0.0.1:8000/ )にアクセスした時実行される
 def index_view(request):
-    
+
+    #TODO: 未ログインユーザーの場合、ログインページへリダイレクトするように仕立てる
+    # .is_authenticated属性を参照し、未ログインであればFalseが帰ってくる
+    if not request.user.is_authenticated:
+        return redirect("accounts:login")
+
+    #ここで先生かどうかを判定する。未ログイン状態ではis_musicianは参照できない。
     if request.user.is_musician:
         #TODO:ここにDetailMusicViewSecondのnameを書く
-        return redirect("music:detail-music")
+        return redirect("music:detail-music" , request.user.id )
 
+
+    #アクセスした人が先生ではない場合、先生の一覧を表示する
 
     object_list = Teacher.objects.all()
     return render(request, 'music/index.html',{'object_list': object_list})
+
 
 
 
