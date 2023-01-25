@@ -8,10 +8,13 @@ from django.views import View
 from .serializers import DirectMessageSerializer
 from accounts.models import User
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from .forms import TeacherForm
+
+
 
 def logout_view(request):
     logout(request)
-    return redirect('index')
+    return redirect('music:index')
 
 class ListMusicView(ListView):
     template_name = 'music_list.html'
@@ -30,7 +33,8 @@ class DetailMusicView(View):
 
         #Teacher.objects.filter(id=pk).first()
         context = {}
-        context["teacher"]  =Teacher.objects.filter(id=pk).first()
+        # context["teacher"]  = Teacher.objects.filter(id=pk).first()
+        context["teacher"]  = Teacher.objects.filter(id=pk).first()
 
         return render(request,"music/music_detail.html" ,context)
 
@@ -112,19 +116,27 @@ class CreateMusicView(CreateView):
     #model = Teacher
     #success_url = '/music/'
 
-class DeleteMusicView(View):
-    #template_name = 'music/music_confirm_delete.html'
-    #model = Teacher
-    #success_url = '/music/'
+    
 
+class DeleteMusicView(View):
+    
     def get(self, request, pk, *args, **kwargs):
         teacher = Teacher.objects.filter(id=pk).first()
 
-        if teacher.user_id == request.user:
-            User.delete()
+        #teacherの存在確認(存在しない場合はリダイレクト)
+        if not teacher:
+            return  redirect("music:index")
 
-        # 任意のページへリダイレクト
-        return redirect("")    
+        #ここで存在しないteacherの.user_idを参照するとエラーになる
+        if teacher.user_id == request.user:
+
+            #TODO:ここで削除対象のUserモデルのデータを特定する。その上で.delete()を実行する。
+            user    = User.objects.filter(id=request.user.id).first()
+            user.delete()
+
+        # トップページへリダイレクト
+        return redirect("music:index")
+ 
 
 
 
