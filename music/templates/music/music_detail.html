@@ -37,8 +37,14 @@
           {% endfor %}
         <!--<li>言語: {{ teacher.lang.language_name }}</li>-->
     </ul>
-    <form action="" method="POST"
+
+    <form action="" method="POST">
         {% csrf_token %}
+
+        <textarea name="message" cols="30" rows="10"></textarea>
+        {#送信ボタンを押したき、#}
+        <input type="submit" value="送信">
+    </form>    
 
     </form>
   </body>

@@ -38,6 +38,17 @@ class DetailMusicView(View):
 
         return render(request,"music/music_detail.html" ,context)
 
+    def post(self, request, pk, *args, **kwargs):
+    
+        #ダイレクトメッセージの内容を取り出す(送信されたデータからname="message"に該当するものを取り出す)
+        print(request.POST["message"])
+        #↓
+        #print("先生こんにちは！！")
+
+        #TODO:ここでダイレクトメッセージの保存処理を書いていく。
+
+        return redirect("music:detail-music", pk)    
+
 class DetailStudentView(View):
 
     # このpkはUserモデルのid
@@ -151,7 +162,8 @@ def index_view(request):
     #ここで先生かどうかを判定する。未ログイン状態ではis_musicianは参照できない。
     if request.user.is_musician:
         #TODO:ここにDetailMusicViewSecondのnameを書く
-        return redirect("music:detail-music" , request.user.id )
+        teacher = Teacher.objects.filter(user_id=request.user.id).first()
+        return redirect("music:detail-music" , teacher.id )
 
 
     #アクセスした人が先生ではない場合、先生の一覧を表示する
@@ -186,6 +198,8 @@ class MypageView(View):
 
         return redirect("mypage") 
 
+
+"""
 class DirectMessageViewSet(ModelViewSet):
     queryset = DirectMessage.objects.all()
     serializer_class = DirectMessageSerializer
@@ -207,6 +221,7 @@ class InboxListView(ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return self.queryset.filter(receiver=self.request.user)
+"""       
 
 
 
