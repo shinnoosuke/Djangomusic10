@@ -180,7 +180,7 @@ def index_view(request):
 
 class UpdateMusicView(UpdateView): 
     model = Teacher
-    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","inst","year","revel","pic","user_id")
+    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","year","revel","pic","user_id")
     template_name = 'music/music_update.html'
     success_url = '/music/' 
 

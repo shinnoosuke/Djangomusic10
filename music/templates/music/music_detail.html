@@ -42,8 +42,22 @@
         {% csrf_token %}
 
         <textarea name="message" cols="30" rows="10"></textarea>
-        {#送信ボタンを押したき、#}
+    {#送信ボタンを押したき、#}
         <input type="submit" value="送信">
+
+
+    {# 編集フォーム #}  
+    <form action="{% url 'music:update-music' teacher.id %}" method="POST">
+        {% csrf_token %}
+
+    {# TODO:ここに編集用のinputタグ、textareaタグ等をそれぞれ書いていく #}  
+
+        <input type="submit" value="編集">
+    </form>
+
+
+    {# 削除ボタン #}  
+    <a href="{% url 'music:delete-music' teacher.id %}">削除する</a>　
     </form>    
 
     </form>
