@@ -75,6 +75,8 @@ class DirectMessage(models.Model):
     )
     message = models.CharField(verbose_name="メッセージ", max_length=200)
     created_at = models.DateTimeField(verbose_name="登録日時", auto_now_add=True)
+    
+
 
     def __str__(self):
         return str(self.sender) + ' --- send to ---> ' + str(self.receiver)        

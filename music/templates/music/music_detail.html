@@ -44,6 +44,7 @@
         <textarea name="message" cols="30" rows="10"></textarea>
         <input type="submit" valus="送信">
     </form>
+
     {# ここに自分が関わったメッセージが表示される。#}
 
     {% for message in messages %}
@@ -56,14 +57,15 @@
     {% endfor %}        
 
     {# 編集フォーム #}  
-    <a href="{% url 'music:update-music' teacher.id %}">編集する</a>
-
+    <form action="{% url 'music:update-music' teacher.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="送信">
+    </form>
 
     {# 削除ボタン #}  
-    <a href="{% url 'music:delete-music' teacher.id %}">削除する</a>　
-    </form>    
+    <a href="{% url 'music:delete-music' teacher.id %}">削除する</a>
 
-    </form>
   </body>
   </html>
 

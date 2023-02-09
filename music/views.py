@@ -36,8 +36,10 @@ class DetailMusicView(View):
         #TODO:編集用のフォームを作る
         context["form"]     = TeacherForm(instance=context["teacher"])
 
+
         # 自分が送ったメッセージと自分宛のメッセージをすべて表示
 
+        context["messages"] = DirectMessage.objects.filter( sender=request.user.id )
 
         # 自分が送ったメッセージ
         context["sender_messages"] = DirectMessage.objects.filter( sender=request.user.id )
@@ -46,7 +48,6 @@ class DetailMusicView(View):
         context["receiver_messages"] = DirectMessage.objects.filter( receiver=request.user.id )
 
         
-
 
         """
         # ↓送信も受信も一緒にまとめて出てくる
@@ -267,12 +268,20 @@ def index_view(request):
 #    object_list = Teacher.objects.all()
 #    return render(request, 'music/index.html',{'object_list': object_list})
 
-class UpdateMusicView(UpdateView): 
-    model = Teacher
-    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","year","revel","pic","user_id")
-    template_name = 'music/music_update.html'
-    success_url = '/music/' 
+#class UpdateMusicView(UpdateView): 
+#    model = Teacher
+#    fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","year","revel","pic","user_id")
+#    template_name = 'music/music_update.html'
+#    success_url = '/music/' 
 
+
+class UpdateMusicView(UpdateView):
+    def post(self, request, *args, **kwargs):
+     teacher = Teacher.objects.filter(user_id=request.user.id).first() 
+     model = Teacher
+     fields = ("movie","fee","academic","experience","certificate","reputation","message","oneword","lang","year","revel","pic","user_id")
+     template_name = 'music/music_update.html'
+     success_url = '/music/' 
     ## DetailMusicView から直接 編集処理をしたい場合は POSTを
     ## DetailMusicView から UpdateMusicViewへ移動して編集処理をしたい場合は、GETを
 
@@ -333,4 +342,3 @@ class InboxListView(ReadOnlyModelViewSet):
 
 #context_object_name = 'object_list'
 #context_object_name = 'object_list'
-
